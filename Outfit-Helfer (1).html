@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Outfit-Helfer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--h:335;--ink:#1d1630;--bd:#1d1630;--line:var(--bd);--bg:oklch(96% .03 var(--h));--card:#fff;--acc:oklch(var(--aL,74%) var(--aC,.17) var(--h));--acc-ink:#1d1630;--mute:#6a6279;--chip:oklch(91% .05 var(--h));--sh:#1d1630;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#f5f1ff;--bd:oklch(62% .08 var(--h));--bg:oklch(19% .04 var(--h));--card:oklch(25% .045 var(--h));--mute:#aba3bd;--chip:oklch(31% .06 var(--h));--sh:oklch(10% .03 var(--h))}}
+:root[data-theme="dark"]{--ink:#f5f1ff;--bd:oklch(62% .08 var(--h));--bg:oklch(19% .04 var(--h));--card:oklch(25% .045 var(--h));--mute:#aba3bd;--chip:oklch(31% .06 var(--h));--sh:oklch(10% .03 var(--h))}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.45 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:640px;margin:0 auto;padding:18px 16px 40px}
+.pr{display:flex;gap:12px;margin-bottom:20px}
+.av{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:0}
+.av .l{width:100%;max-width:70px;aspect-ratio:1;border-radius:50% 50% 50% 16%;display:grid;place-items:center;background:oklch(82% .13 var(--h));color:#1d1630;font:800 28px "Bricolage Grotesque",system-ui;border:2px solid var(--bd);box-shadow:3px 3px 0 var(--sh);transition:transform .15s,box-shadow .15s}
+.av.on .l{transform:translate(-2px,-2px) rotate(-6deg);box-shadow:6px 6px 0 var(--sh)}
+.av .t{padding:1px 9px;border-radius:99px}
+.av.on .t{background:var(--acc);color:var(--acc-ink);font-weight:800}
+h1{display:inline-block;font:800 clamp(48px,15vw,76px)/1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.04em;margin:4px 0 14px;padding:0 .22em .06em;background:var(--acc);color:var(--acc-ink);border:2px solid var(--bd);border-radius:18px 18px 18px 4px;box-shadow:5px 5px 0 var(--sh);transform:rotate(-1.5deg)}
+.sub{color:var(--mute);margin:0 0 18px;font-size:17px}
+.tabs{display:flex;border:2px solid var(--bd);border-radius:999px;padding:4px;background:var(--card);margin-bottom:18px;gap:4px}
+.tab{flex:1;padding:10px;border:0;border-radius:999px;background:none;color:var(--ink);font:700 16px "Bricolage Grotesque",system-ui,sans-serif;cursor:pointer}
+.tab.on{background:var(--ink);color:var(--bg)}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:24px 24px 24px 8px;box-shadow:5px 5px 0 var(--sh);padding:16px;margin-bottom:18px}
+.lab{font-weight:800;font-size:17px;margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{padding:7px 14px;border-radius:999px;border:2px solid var(--bd);background:var(--card);color:var(--ink);font:600 15px "Bricolage Grotesque",system-ui,sans-serif;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.chip.on{background:var(--acc);color:var(--acc-ink);transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--sh)}
+.btn{width:100%;padding:16px;border-radius:20px;border:2px solid var(--bd);background:var(--acc);color:var(--acc-ink);font:800 21px "Bricolage Grotesque",system-ui,sans-serif;box-shadow:5px 5px 0 var(--sh);cursor:pointer;transition:transform .1s,box-shadow .1s}
+.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--sh)}
+.btn.sec{background:var(--card);color:var(--ink);margin-top:14px;font-size:17px}
+.btn:disabled{opacity:.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px 14px}
+.it{background:var(--card);border:2px solid var(--bd);border-radius:18px;overflow:hidden;position:relative;box-shadow:4px 4px 0 var(--sh)}
+.it:nth-child(3n+1){transform:rotate(-1deg)}.it:nth-child(3n+2){transform:rotate(.8deg)}
+.it img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--chip);border-bottom:2px solid var(--bd)}
+.it .n{padding:8px 10px;font-size:14px;font-weight:700;line-height:1.25}
+.it .k{color:var(--mute);font-size:12px;font-weight:500}
+.x{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;border:2px solid var(--bd);background:var(--card);color:var(--ink);font-weight:800;cursor:pointer}
+.msg{color:var(--mute);text-align:center;padding:22px 8px;font-size:17px}
+.flat{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 14px;padding:10px 4px 16px}
+.pc{background:#fff;color:#1d1630;padding:7px 7px 0;border:2px solid var(--bd);border-radius:6px;box-shadow:4px 4px 0 var(--sh);transform:rotate(var(--r,0deg));animation:drop .55s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--i)*.12s)}
+.pc:nth-child(odd){--r:-2.5deg}.pc:nth-child(even){--r:2.2deg;margin-top:14px}
+.pc img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.pn{font-size:13px;font-weight:700;padding:7px 2px 8px;line-height:1.2}
+@keyframes drop{from{opacity:0;transform:translateY(-30px) rotate(calc(var(--r)*5)) scale(.92)}}
+@media (prefers-reduced-motion:reduce){.pc{animation:none}}
+.ot{font:800 clamp(30px,9vw,42px)/1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.03em;margin:0 0 6px}
+.why{margin:8px 0 0;font-size:17px;line-height:1.5}
+.tip{margin-top:14px;padding:12px 14px;border-radius:10px;background:oklch(92% .13 95);color:#2a2410;transform:rotate(-1deg);border:2px solid #2a2410;font-weight:600}
+input[type=file]{display:none}
+.drop{display:block;text-align:center;padding:24px 16px;border:2.5px dashed var(--acc);border-radius:24px;cursor:pointer;margin-bottom:14px;font-weight:800;font-size:20px;background:var(--card)}
+.drop .sub{font-weight:500;font-size:14px;margin:6px 0 0}
+.bar{height:12px;border:2px solid var(--bd);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+</style>
+</head>
+<body>
+<main>
+<div class="pr" id="pr"></div>
+<h1 id="nm">Maria</h1>
+<p class="sub">Was ziehst du heute an?</p>
+<div class="tabs">
+<button class="tab on" data-t="outfit">Outfit</button>
+<button class="tab" data-t="closet">Kleiderschrank (<span id="cnt">0</span>)</button>
+</div>
+
+<div id="keybox"></div>
+<section id="outfit">
+<div class="card">
+<p class="lab">Anlass</p><div class="chips" data-k="anlass"></div>
+<p class="lab">Wetter</p><div class="chips" data-k="wetter"></div>
+<p class="lab">Stimmung</p><div class="chips" data-k="stil"></div>
+<p class="lab">Sonstiges (optional)</p>
+<input id="extra" type="text" placeholder="z. B. Elternabend, viel draußen, Lieblingspulli tragen" style="width:100%;padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit">
+</div>
+<button class="btn" id="go">Zeig mir mein Outfit</button>
+<div id="res" style="margin-top:14px"></div>
+</section>
+
+<section id="closet" hidden>
+<label class="drop" for="file">📷 Fotos hinzufügen<br><span class="sub">Am besten ein Foto pro Teil, auf ruhigem Hintergrund. Mehrere auf einmal möglich.</span></label>
+<input id="file" type="file" accept="image/*" multiple>
+<div class="bar" id="bar" hidden><i></i></div>
+<p class="sub" id="stat"></p>
+<div class="grid" id="grid"></div>
+</section>
+</main>
+
+<script>
+const OPT={
+ anlass:["Schule","Freizeit","Abend / Ausgehen","Sport"],
+ wetter:["🥶 Kalt","🧥 Kühl","🌤️ Mild","☀️ Warm","🌧️ Regen"],
+ stil:["🛋️ Lässig","😎 Cool","🧸 Cozy","✨ Schick","🏃 Sportlich"]
+};
+const PROF=[
+ {id:"micha",h:250,l:72,c:.15,name:"Micha",anlass:["Homeoffice","Dienstreise / Termin","Freizeit","Abend / Ausgehen","Sport"],info:"Micha, Papa, Jahrgang 1977, arbeitet im IT-Management, meist im Homeoffice (Videocalls), manchmal Dienstreisen. Erwachsener Mann: gepflegt, aber bequem."},
+ {id:"maria",h:150,l:76,c:.17,name:"Maria",anlass:["Schule","Elternabend / Termin","Freizeit","Abend / Ausgehen","Sport"],info:"Maria, Jahrgang 1984, Lehrerin (steht viel, Schulalltag mit Kindern, gelegentlich Elternabende). Erwachsene Frau."},
+ {id:"emma",h:85,l:87,c:.17,name:"Emma",anlass:["Schule","Freizeit","Feier","Sport"],info:"Emma, Jahrgang 2013 (Teenager), lässiger Stil, mag Baggyhosen und kurze T-Shirts. Altersgerecht stylen."},
+ {id:"klara",h:355,l:78,c:.15,name:"Klara",anlass:["Schule","Freizeit","Feier","Sport"],info:"Klara, Jahrgang 2015 (Kind), lässig und sportlich, Stil noch wechselnd – darf gern etwas ausprobieren. Altersgerecht, praktisch und bewegungsfreundlich."}
+];
+let cur="maria";try{cur=localStorage.getItem("op")||"maria"}catch(e){}
+if(!PROF.some(p=>p.id===cur))cur="maria";
+const P=()=>PROF.find(p=>p.id===cur);
+const sel={anlass:P().anlass[0],wetter:"🌤️ Mild",stil:"🛋️ Lässig"};
+let items=[],last=[],sample=null,db=null;
+const stat=document.getElementById("stat");
+const mine=()=>items.filter(i=>(i.p||"maria")===cur);
+function buildPr(){const rs=document.documentElement.style;rs.setProperty("--h",P().h);rs.setProperty("--aL",P().l+"%");rs.setProperty("--aC",P().c);nm.textContent=P().name;pr.replaceChildren();PROF.forEach(p=>{const b=el("button","av"+(p.id===cur?" on":""));b.style.setProperty("--h",p.h);b.append(el("span","l",p.name[0]),el("span","t",p.name));
+ b.onclick=()=>{cur=p.id;try{localStorage.setItem("op",cur)}catch(e){}last=[];res.replaceChildren();stat.textContent="";sel.anlass=P().anlass[0];buildPr();buildChips();render()};pr.append(b)})}
+
+/* Speicher: IndexedDB, mit Fallback auf Arbeitsspeicher */
+function openDB(){return new Promise(r=>{try{const q=indexedDB.open("outfit",1);q.onupgradeneeded=()=>q.result.createObjectStore("i",{keyPath:"id"});q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}})}
+function idb(mode,fn){return new Promise(r=>{if(!db)return r([]);try{const s=db.transaction("i",mode).objectStore("i");const q=fn(s);q.onsuccess=()=>r(q.result);q.onerror=()=>r([])}catch(e){r([])}})}
+
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+
+/* Chips */
+function buildChips(){OPT.anlass=P().anlass;document.querySelectorAll(".chips").forEach(box=>{
+ const k=box.dataset.k;box.replaceChildren();
+ OPT[k].forEach(o=>{const b=el("button","chip"+(sel[k]===o?" on":""),o);
+  b.onclick=()=>{sel[k]=o;box.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b))};box.append(b)});
+})}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+ document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
+ outfit.hidden=t.dataset.t!=="outfit";closet.hidden=t.dataset.t!=="closet"});
+
+/* Bild verkleinern */
+function shrink(file,max=640){return new Promise((res,rej)=>{
+ const u=URL.createObjectURL(file),im=new Image();
+ im.onload=()=>{const s=Math.min(1,max/Math.max(im.width,im.height));
+  const c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
+  c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);
+  c.toBlob(b=>b?res({blob:b,url:c.toDataURL("image/jpeg",.8)}):rej(new Error("Bild")),"image/jpeg",.8)};
+ im.onerror=()=>rej(new Error("Bild"));im.src=u})}
+
+const KAT={oberteil:"Oberteil",pullover:"Pullover / Layer",hose:"Hose",rock_kleid:"Rock / Kleid",jacke:"Jacke",schuhe:"Schuhe",accessoire:"Accessoire"};
+
+function render(){
+ const m=mine();cnt.textContent=m.length;
+ grid.replaceChildren();
+ if(!m.length){grid.append(el("p","msg","Noch nichts im Kleiderschrank von "+P().name+"."));return}
+ m.forEach(i=>{
+  const d=el("div","it"),im=el("img");im.src=i.img;im.alt=i.name;
+  const x=el("button","x","×");x.title="Entfernen";
+  x.onclick=async()=>{items=items.filter(o=>o.id!==i.id);await idb("readwrite",s=>s.delete(i.id));render()};
+  const n=el("div","n",i.name);n.append(el("div","k",(KAT[i.kat]||i.kat)+" · "+(i.farben||[]).join(", ")));
+  d.append(im,x,n);grid.append(d)});
+}
+
+const getKey=()=>{try{return window._k||localStorage.getItem("oak")||""}catch(e){return window._k||""}};
+const b64=b=>new Promise((r,j)=>{const f=new FileReader();f.onload=()=>r(f.result.split(",")[1]);f.onerror=j;f.readAsDataURL(b)});
+function apiSample(k){return{json:async(prompt,o={})=>{
+ const content=[];for(const b of o.images||[])content.push({type:"image",source:{type:"base64",media_type:"image/jpeg",data:await b64(b)}});
+ content.push({type:"text",text:prompt+"\n\nAntworte ausschließlich mit gültigem JSON, ohne Markdown."});
+ const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":k,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+  body:JSON.stringify({model:o.modelTier==="quick"?"claude-haiku-5-5":"claude-sonnet-5-5",max_tokens:800,messages:[{role:"user",content}]})});
+ if(!r.ok){const e=new Error("API-Fehler "+r.status);e.code=(r.status===401||r.status===403)?"bad_key":"api";throw e}
+ const d=await r.json(),t=d.content.map(c=>c.text||"").join("");
+ return JSON.parse(t.slice(t.indexOf("{"),t.lastIndexOf("}")+1))}}}
+async function getSample(){
+ if(sample)return sample;
+ try{if(window.claude&&claude.use){sample=await claude.use("sample");return sample}}catch(e){sample=null}
+ const k=getKey();sample=k?apiSample(k):null;
+ return sample;
+}
+function needKey(){
+ keybox.replaceChildren();
+ const c=el("div","card");
+ c.append(el("p","lab","🔑 KI-Zugang nötig"),el("p","sub","Außerhalb von Claude braucht die App einen eigenen Anthropic-API-Schlüssel (console.anthropic.com). Er wird nur in diesem Browser gespeichert. Die Kosten laufen über dein API-Konto und sind pro Foto bzw. Outfit sehr gering."));
+ const i=el("input");i.type="password";i.placeholder="sk-ant-…";i.style.cssText="width:100%;padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;margin-bottom:10px";
+ const b=el("button","btn","Schlüssel speichern");
+ b.onclick=()=>{const v=i.value.trim();if(!v)return;try{localStorage.setItem("oak",v)}catch(e){}window._k=v;sample=null;keybox.replaceChildren();stat.textContent="Schlüssel gespeichert – bitte jetzt erneut versuchen."};
+ c.append(i,b);keybox.append(c);
+}
+function badKey(){try{localStorage.removeItem("oak")}catch(e){}window._k=null;sample=null;needKey();stat.textContent="Der Schlüssel wurde abgelehnt. Bitte neu eingeben."}
+
+/* Fotos hochladen & taggen */
+file.onchange=async()=>{
+ const files=[...file.files];file.value="";if(!files.length)return;
+ const s=await getSample();
+ if(!s){needKey();return}
+ bar.hidden=false;const fill=bar.firstElementChild;let ok=0;
+ for(let n=0;n<files.length;n++){
+  stat.textContent="Analysiere Foto "+(n+1)+" von "+files.length+" …";
+  fill.style.width=(n/files.length*100)+"%";
+  try{
+   const {blob,url}=await shrink(files[n]);
+   const t=await s.json(
+    "Du siehst das Foto eines Kleidungsstücks, Schuhs oder Accessoires. Antworte NUR mit JSON in genau dieser Form: "+
+    '{"name":"kurzer deutscher Name inkl. Farbe, z. B. Dunkelblaue Jeans","kategorie":"oberteil|pullover|hose|rock_kleid|jacke|schuhe|accessoire","farben":["..."],"stil":["lässig|cool|cozy|sportlich|schick|klassisch"],"waerme":1-5 (1 sehr luftig, 5 sehr warm),"formell":1-5 (1 sehr leger, 5 sehr elegant),"wetterfest":true|false}',
+    {images:[blob],modelTier:"quick"});
+   const it={id:Date.now().toString(36)+n,p:cur,img:url,name:t.name||"Kleidungsstück",kat:t.kategorie||"oberteil",
+    farben:t.farben||[],stil:t.stil||[],waerme:t.waerme||3,formell:t.formell||2,wetterfest:!!t.wetterfest};
+   items.push(it);await idb("readwrite",st=>st.put(it));render();ok++;
+  }catch(e){
+   if(e&&e.code==="bad_key"){badKey();break}
+   if(e&&e.code==="not_granted"){stat.textContent="Zugriff auf Claude wurde nicht erlaubt.";break}
+   if(e&&e.code==="rate_limited"){stat.textContent="Zu viele Anfragen – bitte kurz warten und den Rest erneut hochladen.";break}
+   stat.textContent="Foto "+(n+1)+" konnte nicht analysiert werden: "+((e&&e.message)||"Fehler");
+  }
+ }
+ fill.style.width="100%";setTimeout(()=>bar.hidden=true,600);
+ if(ok)stat.textContent=ok+" Teil(e) hinzugefügt.";
+};
+
+/* Outfit vorschlagen */
+go.onclick=async()=>{
+ res.replaceChildren();
+ const m=mine();
+ if(m.length<3){res.append(el("p","msg","Füge zuerst ein paar Teile im Kleiderschrank von "+P().name+" hinzu (mindestens Oberteil, Hose und Schuhe)."));return}
+ const s=await getSample();
+ if(!s){needKey();return}
+ go.disabled=true;go.textContent="Die Stylistin überlegt …";
+ const list=m.map(i=>({id:i.id,name:i.name,kat:i.kat,farben:i.farben,stil:i.stil,waerme:i.waerme,formell:i.formell,wetterfest:i.wetterfest}));
+ const prompt=
+  "Du bist eine ehrliche, stilsichere Personal Stylistin. Stelle aus dem vorhandenen Kleiderschrank EIN komplettes Outfit zusammen.\n"+
+  "Person: "+P().info+"\nAnlass: "+sel.anlass+"\nWetter: "+sel.wetter+"\nStimmung: "+sel.stil+"\nZusatzwunsch: "+(extra.value||"keiner")+"\n\n"+
+  "Regeln: Nur ids aus der Liste verwenden. Komplett = (Oberteil + Hose) ODER Rock/Kleid, dazu Schuhe; bei Kälte/Kühle/Regen passende Jacke bzw. warmer Layer (Wärme!), bei Regen wetterfeste Teile; Accessoire nur, wenn es wirklich passt. "+
+  "Auf Farbharmonie (max. 3 Hauptfarben, Neutrals mit einem Akzent), stimmige Formalität und den Anlass achten. Schule = alltagstauglich und bequem. "+
+  "Falls etwas Wichtiges fehlt (z. B. keine Jacke für Regen), das im Tipp nennen.\n"+
+  (last.length?"Vermeide genau dieses früher vorgeschlagene Outfit und wähle eine echte Alternative: "+JSON.stringify(last)+"\n":"")+
+  "\nKleiderschrank:\n"+JSON.stringify(list)+
+  '\n\nAntworte NUR mit JSON: {"ids":["..."],"titel":"kurzer Outfit-Name","begruendung":"2-3 Sätze, warum das funktioniert","tipp":"1 kurzer Styling-Tipp"}';
+ try{
+  const r=await s.json(prompt,{modelTier:"default",cache:false});
+  const picked=(r.ids||[]).map(id=>m.find(i=>i.id===id)).filter(Boolean);
+  if(!picked.length)throw new Error("leer");
+  last=picked.map(p=>p.id);
+  const card=el("div","card");card.append(el("h2","ot",r.titel||"Dein Outfit"));
+  const g=el("div","flat");
+  picked.forEach((p,k)=>{const d=el("div","pc"),im=el("img");im.src=p.img;im.alt=p.name;d.style.setProperty("--i",k);d.append(im,el("div","pn",p.name));g.append(d)});
+  card.append(g,el("p","why",r.begruendung||""));
+  if(r.tipp)card.append(el("div","tip","💡 "+r.tipp));
+  res.append(card);
+  const again=el("button","btn sec","Anderes Outfit");again.onclick=()=>go.click();res.append(again);
+ }catch(e){
+  if(e&&e.code==="bad_key")badKey();else res.append(el("p","msg",e&&e.code==="not_granted"?"Zugriff auf Claude wurde nicht erlaubt.":"Das hat nicht geklappt – bitte noch einmal versuchen."));
+ }
+ go.disabled=false;go.textContent="Zeig mir mein Outfit";
+};
+
+(async()=>{db=await openDB();if(!db)stat.textContent="Hinweis: Hier kann der Browser nichts dauerhaft speichern – Fotos bleiben nur bis zum Schließen der Seite erhalten.";items=(await idb("readonly",s=>s.getAll()))||[];buildPr();buildChips();render()})();
+buildPr();buildChips();
+</script>
+</body>
+</html>
